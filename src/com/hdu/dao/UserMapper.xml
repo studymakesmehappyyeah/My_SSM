@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hdu.dao.UserMapper">
+    <select id="findUserById" parameterType="integer" resultType="User">
+        select * from t_user where id=#{id}
+    </select>
+
+    <select id="login" resultType="User">
+        select * from t_user where username=#{username} and password=#{password}
+    </select>
+
+
+
+    <insert id="register" keyProperty="id" useGeneratedKeys="true">
+        insert t_user(username,password,money) values (#{username},#{password},#{money})
+    </insert>
+
+
+    <update id="addMoney">
+        update t_user set money=money+#{money} where username=#{outUser}
+    </update>
+
+    <update id="subMoney">
+        update t_user set money=money-#{money} where username=#{inUser}
+    </update>
+
+    <delete id="delete">
+        delete from t_user  where username=#{username} and password=#{password}
+
+    </delete>
+</mapper>

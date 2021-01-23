@@ -14,6 +14,7 @@
     http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
     <context:component-scan base-package="com.hdu.service"/>
+    <context:component-scan base-package="com.hdu.aspectJ"/>
     <!-- 读取db.properties -->
     <context:property-placeholder location="classpath:db.properties"/>
 
@@ -42,8 +43,11 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <!-- 开启事务注解 -->
+    <!-- 开启事务注解  -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--aop注释法-->
+    <aop:aspectj-autoproxy/>
 
     <!-- 配置MyBatis工厂SqlSessionFactory -->
     <bean id="sqlSessionFactory"
